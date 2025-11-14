@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoseFlow</title>
+    <title>DoseFlow | Log In</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* Core DoseFlow Theme */
         body {
             margin: 0;
             background: #0a0f2f; 
@@ -13,393 +14,175 @@
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex; 
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.2s;
-        }
-
-        a:hover {
-            color: #4eb1ff;
-        }
-
-        .icon {
-            margin-right: 8px;
-            font-size: 1.2em;
-        }
-
-        .sidebar {
-            width: 210px;
-            background: #090c23; 
-            padding: 25px;
-            box-sizing: border-box;
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
-            position: sticky; 
-            top: 0;
-            height: 100vh;
-        }
-
-        .sidebar h2 {
-            margin-top: 0;
-            color: #4eb1ff;
-            font-weight: 900;
-            font-size: 22px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 25px;
-        }
-
-        .sidebar ul li {
-            padding: 10px 0;
-            font-weight: 500;
-            cursor: pointer;
-            opacity: 0.75;
-            transition: 0.2s;
-        }
-
-        .sidebar ul li:hover {
-            opacity: 1;
-            transform: translateX(5px);
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 30px;
-            box-sizing: border-box;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding-bottom: 20px;
+            padding: 20px;
         }
 
-        .header-top h1 {
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0;
+        /* Login Card Container */
+        .login-card {
+            background: #090c23;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
         }
 
-        .ai-assistant-badge {
-            background: #4eb1ff; 
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 700;
-            display: flex;
-            float: right;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .time-date {
+        /* Logo/Header */
+        .logo {
             font-size: 36px;
-            font-weight: 800;
+            font-weight: 900;
             color: #4eb1ff;
             margin-bottom: 5px;
+            letter-spacing: -1px;
         }
-
-        .greeting {
-            font-size: 16px;
-            font-weight: 500;
-            opacity: 0.8;
-            margin-bottom: 25px;
-            background: linear-gradient(90deg, #4eb1ff, #53ff53);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr; 
-            gap: 30px;
-        }
-
-        .card-insights, .card-metrics {
-            background: #090c23; 
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .card-insights {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
-        }
-
-        .card-header-left h3 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .card-header-left p {
-            margin: 0;
-            font-size: 13px;
-            opacity: 0.7;
-        }
-
-        .btn-insights {
-            background: #4eb1ff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 7px;
-            cursor: pointer;
-            color: #fff;
-            font-weight: 700;
+        .tagline {
+            color: #888;
             font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .btn-insights:hover {
-            background: #2f99e4;
-            transform: translateY(-2px);
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #4eb1ff;
-        }
-
-        .insights-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .insights-list li {
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .insights-list li .bullet-icon {
-            color: #ffcc00; 
-            margin-right: 10px;
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        .insights-list.tips li .bullet-icon {
-            color: #53ff53;
-        }
-
-        .card-metrics {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .metric-title {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .bmi-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-            background: conic-gradient(#4eb1ff 70%, #0c1843 0%); 
-            border: 12px solid #0c1843; 
-        }
-
-        .bmi-value {
-            font-size: 32px;
-            font-weight: 900;
-            background: #090c23; 
-            width: 90%;
-            height: 90%;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .bmi-label {
-            font-size: 12px;
-            font-weight: 600;
-            opacity: 0.8;
-            margin-top: -10px;
-        }
-
-        .bmi-status {
-            font-size: 16px;
-            font-weight: 700;
-            color: #53ff53; 
             margin-bottom: 30px;
         }
 
-        .metrics-details {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            padding: 0 10px;
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
         }
-
-        .metric-item {
-            display: flex;
-            flex-direction: column;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
             font-size: 14px;
-            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #172a5a;
+            background: #0a0f2f;
+            color: #fff;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #4eb1ff;
+            box-shadow: 0 0 5px rgba(78, 177, 255, 0.5);
         }
 
-        .metric-item b {
-            font-size: 20px;
-            font-weight: 800;
-            margin-top: 5px;
+        /* Button Styling */
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: #4eb1ff;
+            color: #090c23;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 10px;
+        }
+        .btn-login:hover {
+            background: #2f99e4;
+            transform: translateY(-1px);
         }
 
-        .metric-item span {
-            opacity: 0.8;
+        /* Links and Messages */
+        .footer-links {
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        .footer-links a {
+            color: #4eb1ff;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
         }
         
-        .smiley-face {
-            font-size: 24px;
+        #login-message {
             margin-top: 20px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 900px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            }
+            color: orange;
+            font-size: 14px;
+            font-weight: 600;
         }
     </style>
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>DoseFlow</h2>
-    <ul>
-        <li><span class="icon">🏠</span> <a href="dash.html">Dashboard</a></li>
-        <li><span class="icon">🩺</span><a href="agora.html"> Agora AI</a></li>
-        <li><span class="icon">💊</span> <a href="my-medicine.html"> Medicines</a></li>
-        <li><span class="icon">📄</span> Prescriptions</li>
-        <li><span class="icon">📈</span><a href="charts.html">Health Charts</a></li>
-        <li><span class="icon">🎯</span><a href="trackers.html">Trackers</a></li>
-        <li><span class="icon">📋</span> Health Report</li>
-         <li><span class="icon">🧘</span><a href="selfcare.html">Self-care & Wellness</a></li>
-        <li><span class="icon">🏆</span> Achievements</li>
-        <li><span class="icon">🚨</span>Mood Tracker</li>
-    </ul>
-</div>  
+<div class="login-card">
+    <div class="logo">DoseFlow</div>
+    <div class="tagline">Your Personal Health Companion</div>
 
-<div class="main-content">
-    <div class="header-top">
-        <h1>Dashboard</h1>
-        <div class="ai-assistant-badge">
-            <span class="icon">🤖</span><a href="agora.html"> AI Health Assistant</a> <span class="icon">🧑‍⚕️</span>
-        </div>
-    </div>
-
-    <div id="time-display" class="time-date"></div>
-    <div class="greeting">Welcome Back!! Here's your unified health summary.</div>
-
-    <div class="content-grid">
-        <div class="card-insights">
-            <div class="card-header">
-                <div class="card-header-left">
-                    <h3><span class="icon">🩺</span> AI Health Assistant</h3>
-                    <p>Your personal AI-powered health guide.</p>
-                </div>
-                <a class="btn-insights" href="agora.html">
-                    <span class="icon">✨</span>Discuss your Health
-                </a>
-            </div>
-            
-            <div class="insights-section">
-                <div class="section-title"><span class="icon">💡</span>Got any questions in mind?</div>
-                <ul class="insights-list">
-                    <li><span class="bullet-icon">⚡</span> What does a BMI of 22.1 mean for my health?</li>
-                    <li><span class="bullet-icon">⚡</span> How can I lower my blood pressure?</li>
-                    <li><span class="bullet-icon">⚡</span> What is the best time to take my blood pressure medicine?</li>
-                </ul>
-            </div>
-            
-            <div class="insights-section">
-                <div class="section-title"><span class="icon">🌱</span> General Wellness Tips</div>
-                <ul class="insights-list tips">
-                    <li><span class="bullet-icon">🟢</span> Aim for at least 30 minutes of moderate-intensity physical activity most days of the week to support your heart health.</li>
-                    <li><span class="bullet-icon">🟢</span> Incorporate a variety of fruits, vegetables, and whole grains into your diet, and try to limit processed foods and excessive sodium intake.</li>
-                    <li><span class="bullet-icon">🟢</span> Prioritize getting 7-9 hours of quality sleep each night to support overall well-being and energy levels.</li>
-                </ul>
-            </div>
+    <form id="login-form">
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="your.name@example.com">
         </div>
 
-        <div class="card-metrics">
-            <div class="metric-title"><span class="icon">🏃‍♀️</span> Health Metrics</div>
-            <p style="font-size: 13px; opacity: 0.7;">Your current body metrics.</p>
-
-            <div class="bmi-circle">
-                <div class="bmi-value">
-                    22.1
-                    <div class="bmi-label">BMI</div>
-                </div>
-            </div>
-
-            <div class="bmi-status">Normal</div>
-
-            <div class="metrics-details">
-                <div class="metric-item"><b>70</b><span>Weight (kg)</span></div>
-                <div class="metric-item"><b>178</b><span>Height (cm)</span></div>
-            </div>
-            
-            <div class="smiley-face">&#128578;</div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="••••••••">
         </div>
+
+        <button type="submit" class="btn-login"><a href="dash.html">Log In</a></button>
+    </form>
+
+    <div id="login-message"></div>
+
+    <div class="footer-links">
+        <a href="signup.html">Sign Up</a> 
+        <span>|</span> 
+        <a href="forgot-password.html">Forgot Password?</a>
     </div>
 </div>
 
 <script>
-    function updateTime() {
-        const now = new Date();
-        const datePart = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-        const timePart = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        document.getElementById('time-display').textContent = `${datePart} ${timePart}`;
+    const loginForm = document.getElementById('login-form');
+    const loginMessage = document.getElementById('login-message');
+
+    // Placeholder function for client-side login attempt
+    function handleLogin(event) {
+        event.preventDefault(); // Stop the form from submitting normally
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Simple validation check
+        if (!email || !password) {
+            loginMessage.textContent = "Please enter both email and password.";
+            return;
+        }
+
+        // --- Mock Authentication Logic ---
+        loginMessage.style.color = '#4eb1ff';
+        loginMessage.textContent = "Attempting to log in...";
+
+        setTimeout(() => {
+            // For this version, we will redirect on any input for demonstration
+            if (email === "test@doseflow.com" && password === "password") {
+                loginMessage.style.color = '#28a745'; // Green success color
+                loginMessage.textContent = "Login successful! Redirecting to Dashboard...";
+                // In a real app, you'd verify credentials against a backend here
+                window.location.href = 'dash.html'; 
+            } else {
+                loginMessage.style.color = 'orange';
+                loginMessage.textContent = "Login successful (Demo mode). Redirecting to Dashboard...";
+                window.location.href = 'dash.html'; 
+            }
+        }, 1500); // Simulate network delay
     }
-    setInterval(updateTime, 1000);
-    updateTime();
+
+    // Attach the event listener to the form
+    loginForm.addEventListener('submit', handleLogin);
 </script>
 
 </body>
 </html>
-
-
